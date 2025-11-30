@@ -1,337 +1,160 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asrarul Haque - Data Analyst Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-    }
-    header {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #05013d;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav a {
-      margin-left: 25px;
-      text-decoration: none;
-      color: #bbb;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #4da3ff;
-    }
-    .hero {
-      padding: 120px 40px;
-      text-align: center;
-      background: linear-gradient(135deg, #050111, #1b1b1b);
-    }
-    .hero h1 {
-      font-size: 58px;
-      margin: 0;
-      color: #4da3ff;
-    }
-    .hero p {
-      font-size: 20px;
-      margin-top: 15px;
-      color: #ccc;
-    }
-    .section {
-      padding: 80px 40px;
-    }
-    .section h2 {
-      font-size: 36px;
-      color: #4da3ff;
-      margin-bottom: 30px;
-    }
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-    }
-    .skill-box {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 14px;
-      text-align: center;
-      border: 1px solid #333;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
-    .project-card {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 14px;
-      border: 1px solid #333;
-    }
-    .project-card h3 {
-      color: #4da3ff;
-      margin: 0 0 10px 0;
-    }
-    .project-card p {
-      color: #bbb;
-      font-size: 15px;
-    }
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #111;
-      color: #777;
-      margin-top: 40px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 22px;
-      background: #4da3ff;
-      color: #000;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 20px;
-      font-weight: 600;
-    }
-    .btn:hover {
-      background: #6cb8ff;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asrarul Haque — Data Analyst Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body style="background-color: lch(1.48% 16.52 287.9);">
-  <header>
-    <h2>Asrarul Haque</h2>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+	<div class="brand">Asrarul Haque</div>
+
+	<!-- Desktop menu -->
+	<nav class="nav-desktop">
+	  <a href="#home">Home</a>
+	  <a href="#about">About</a>
+	  <a href="#skills">Skills</a>
+	  <a href="#background">Background</a>
+	  <a href="#projects">Projects</a>
+	  <a href="#contact">Contact</a>
+	</nav>
+
+	<!-- Mobile hamburger -->
+	<button id="hamburger" aria-label="Open menu" class="hamburger">☰</button>
   </header>
 
-  <section class="hero" id="home">
-    <h1>Data Analyst Portfolio</h1>
-    <p>Transforming raw data into insights | Excel • SQL • Google Sheets • Dashboards</p>
-    <a href="#projects" class="btn">View My Work</a>
+  <!-- Mobile dropdown -->
+  <div id="mobileMenu" class="mobile-menu hidden">
+	<a href="#home" class="m-link">Home</a>
+	<a href="#about" class="m-link">About</a>
+	<a href="#skills" class="m-link">Skills</a>
+	<a href="#background" class="m-link">Background</a>
+	<a href="#projects" class="m-link">Projects</a>
+	<a href="#contact" class="m-link">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+	<div class="hero-left">
+	  <h2 class="small-title">DATA ANALYST PORTFOLIO</h2>
+	  <h1 class="big-title">ASRARUL HAQUE</h1>
+	  <p class="tagline">I help people find insights through data.</p>
+	  <div class="hero-cta">
+		<a href="#projects" class="btn">View Projects</a>
+		<a href="Asrarul Haque Resume.pdf" class="btn-outline" download>Download Resume</a>
+	  </div>
+	</div>
+
+	<div class="hero-right">
+	  <!-- Replace photo.jpg with your own image file -->
+	  <img src="photo.jpg" alt="Asrarul Haque" class="profile-photo" />
+	</div>
   </section>
 
-  <section class="section" id="about">
-    <h2>About Me</h2>
-    <p>
-      I am an aspiring Data Analyst with strong skills in Excel, Google Sheets, SQL, and data cleaning. 
-      I focus on solving real business problems and turning complex data into clean, actionable insights.
-    </p>
+  <!-- ABOUT -->
+  <section id="about" class="section">
+	<div class="container">
+	  <h2>About Me</h2>
+	  <p>
+	   Hi, I'm Asrarul Haque, an aspiring Data Analyst with a strong interest in data cleaning, analysis, and visualization. I have completed 75% of my Data Analytics training and enjoy using tools like Excel, SQL, and Google Sheets to find insights and solve problems. I believe in learning continuously and aim to help businesses make better data-driven decisions.
+	  </p>
+	</div>
   </section>
 
-  <section class="section" id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill-box">Excel</div>
-      <div class="skill-box">Google Sheets</div>
-      <div class="skill-box">SQL</div>
-      <div class="skill-box">Data Cleaning</div>
-      <div class="skill-box">Pivot Tables</div>
-      <div class="skill-box">Dashboards</div>
-      <div class="skill-box">Data Visualization</div>
-      <div class="skill-box">Problem Solving</div>
-    </div>
+  <!-- SKILLS -->
+  <section id="skills" class="section alt">
+	<div class="container">
+	  <h2>Technical Skills</h2>
+	  <ul class="skills-grid">
+		<li>Excel (Advanced)</li>
+		<li>Google Sheets</li>
+		<li>SQL</li>
+		<li>Data Cleaning</li>
+		<li>Pivot Tables</li>
+		<li>Dashboards & Visualization</li>
+		<li>Power BI (basic)</li>
+		<li>Python (basics)</li>
+	  </ul>
+	</div>
   </section>
 
-  <section class="section" id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-
-      <div class="project-card">
-        <h3>Sales Dashboard (Excel)</h3>
-        <p>
-          Cleaned and analyzed 12 months of sales data to identify top categories, seasonal performance, and customer trends.
-        </p>
-      </div>
-
-      <div class="project-card">
-        <h3>Customer Outstanding Analysis</h3>
-        <p>
-          Used Excel & Google Sheets to create an automated ageing report to track overdue payments.
-        </p>
-      </div>
-
-      <div class="project-card">
-        <h3>SQL Student Management System</h3>
-        <p>
-          Designed database, wrote CRUD queries, joins, and created performance reports.
-        </p>
-      </div>
-
-      <div class="project-card">
-        <h3>Google Sheets Automation</h3>
-        <p>
-          IMPORTRANGE, Data Validation, and SUMIFS used to build a live-updating reporting system.
-        </p>
-      </div>
-
-    </div>
+  <!-- BACKGROUND -->
+  <section id="background" class="section">
+	<div class="container">
+	  <h2>Educational & Experience Background</h2>
+	  <ul class="bullet-list">
+		<li>10th, 12th, BCA completed</li>
+		<li>Data Analytics Course — 50% completed</li>
+	  </ul>
+	</div>
   </section>
 
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>Email: yourmail@example.com</p>
-    <p>GitHub: github.com/yourusername</p>
-    <p>LinkedIn: linkedin.com/in/yourprofile</p>
+  <!-- PROJECTS -->
+  <section id="projects" class="section alt">
+	<div class="container">
+	  <h2>Notable Projects</h2>
+
+	  <div class="projects-grid">
+		<!-- You can duplicate these cards and fill details later -->
+		<article class="project-card">
+		  <h3>1. Sales Dashboard — Clothing Store</h3>
+		  <p>Excel dashboard showing monthly sales, category split, top items, and seasonality.</p>
+		</article>
+
+		<article class="project-card">
+		  <h3>2. Outstanding Payments Ageing</h3>
+		  <p>Google Sheets ageing report to track customer debts and recovery priority.</p>
+		</article>
+
+		<article class="project-card">
+		  <h3>3. SQL — Student Management System</h3>
+		  <p>Database + CRUD queries + aggregate reports.</p>
+		</article>
+
+		<article class="project-card">
+		  <h3>4. Google Sheets Automation</h3>
+		  <p>Live-updating report using IMPORTRANGE, SUMIFS, and validation rules.</p>
+		</article>
+
+		<article class="project-card">
+		  <h3>5. Monthly Sales Forecast</h3>
+		  <p>Moving average forecast for inventory planning.</p>
+		</article>
+
+		<article class="project-card">
+		  <h3>6. Customer Segmentation (RFM)</h3>
+		  <p>Segmented customers to identify top 20% revenue-contributors.</p>
+		</article>
+
+		<article class="project-card">
+		  <h3>7. BI Dashboard (Power BI)</h3>
+		  <p>Interactive dashboard with KPIs and filters (screenshot + link).</p>
+		</article>
+
+		<article class="project-card">
+		  <h3>8. Data Cleaning Case Study</h3>
+		  <p>Steps & formulas used to clean messy shop data (dates, formats, duplicates).</p>
+		</article>
+	  </div>
+	</div>
   </section>
 
-  <footer>
-    © 2025 Abdul Auwal | Data Analyst Portfolio
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+	<div class="container">
+	  <h2>Contact Information</h2>
+	  <p>Email: <strong>asrarul320gmail.com</strong></p>
+	  <p>Phone (Whatsapp): <strong>+91 9580179879</strong></p>
+	  <p>Location: Rudhauli Basti, Uttar Pradesh</p>
+	</div>
+  </section>
+
+  <footer class="footer">
+	© <span id="year"></span> Asrarul Haque — Data Analyst Portfolio
   </footer>
 
+  <script src="script.js"></script>
 </body>
-
-
-<!-- Additional Page: projects.html -->
-<!-- Copy this into a separate file named projects.html in GitHub -->
-<!-- START projects.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects - Abdul Auwal</title>
-  <style>
-    body { background:#0f0f0f; color:#fff; font-family:Poppins,sans-serif; margin:0; padding:40px; }
-    h1 { color:#4da3ff; font-size:42px; }
-    .project-box { background:#1a1a1a; padding:20px; margin-top:20px; border-radius:14px; border:1px solid #333; }
-    .project-box h2 { color:#4da3ff; }
-    a { color:#4da3ff; text-decoration:none; }
-  </style>
-</head>
-<body>
-  <h1>All Projects</h1>
-
-  <div class="project-box">
-    <h2>Sales Dashboard – Clothing Store</h2>
-    <p>Full explanation, Excel formulas used, pivot tables, charts, insights, and download links.</p>
-  </div>
-
-  <div class="project-box">
-    <h2>Outstanding Payments Ageing Report</h2>
-    <p>Automated overdue ageing report using Google Sheets formulas.</p>
-  </div>
-
-  <div class="project-box">
-    <h2>SQL – Student Management System</h2>
-    <p>ERD, full query list, joins, aggregations, CRUD operations.</p>
-  </div>
-
-  <div class="project-box">
-    <h2>Google Sheets Automation</h2>
-    <p>Live updating reporting system using IMPORTRANGE + SUMIFS.</p>
-  </div>
-
-</body>
-</html>
-<!-- END projects.html -->
-
-
-
-<!-- Additional Page: resume.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume - Asrarul Haque</title>
-  <style>
-    body { background:#0f0f0f; color:#fff; font-family:Poppins,sans-serif; padding:40px; }
-    h1 { color:#4da3ff; font-size:42px; }
-    .resume-box { background:#1a1a1a; padding:25px; border-radius:14px; border:1px solid #333; margin-top:20px; }
-    .btn { display:inline-block; margin-top:20px; background:#4da3ff; padding:12px 22px; border-radius:8px; color:#000; text-decoration:none; font-weight:600; }
-  </style>
-</head>
-<body>
-  <h1>Resume</h1>
-  <div class="resume-box">
-    <p>Click the button below to download my updated resume.</p>
-    <a class="btn" href="resume.pdf" download>Download Resume</a>
-  </div>
-</body>
-</html>
-
-<!-- Additional Page: insights.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Insights - Asrarul Haque</title>
-  <style>
-    body { background:#0f0f0f; color:#fff; font-family:Poppins,sans-serif; padding:40px; }
-    h1 { color:#4da3ff; font-size:42px; }
-    .insight-box { background:#1a1a1a; padding:25px; border-radius:14px; border:1px solid #333; margin-top:20px; }
-    h2 { color:#4da3ff; }
-  </style>
-</head>
-<body>
-  <h1>Data Insights & Case Studies</h1>
-
-  <div class="insight-box">
-    <h2>1. Clothing Store Sales Pattern (Real Business Case)</h2>
-    <p>Wedding season drives 60–70% demand. Suits & Naqab form 90% of total revenue. Insights derived using Excel pivot tables and charts.</p>
-  </div>
-
-  <div class="insight-box">
-    <h2>2. Outstanding Payment Ageing</h2>
-    <p>10–15 year pending payments categorized into ageing buckets using Google Sheets automation. Improved follow-up efficiency by 40%.</p>
-  </div>
-
-  <div class="insight-box">
-    <h2>3. Monthly Sales Forecasting</h2>
-    <p>Used moving averages to forecast next 3 months demand. Helps optimize inventory for seasonal shifts.</p>
-  </div>
-</body>
-</html>
-
-<!-- Additional Page: contact.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Asrarul</title>
-  <style>
-    body { background:#0f0f0f; color:#fff; font-family:Poppins,sans-serif; padding:40px; }
-    h1 { color:#4da3ff; font-size:42px; }
-    .contact-box { background:#1a1a1a; padding:25px; border-radius:14px; border:1px solid #333; margin-top:20px; }
-    label { display:block; margin-top:10px; }
-    input, textarea {
-      width:100%; padding:10px; margin-top:8px; background:#0f0f0f; color:#fff; border:1px solid #333; border-radius:8px;
-    }
-    .btn { display:inline-block; margin-top:20px; background:#4da3ff; padding:12px 22px; border-radius:8px; color:#000; text-decoration:none; font-weight:600; }
-  </style>
-</head>
-<body>
-  <h1>Contact Me</h1>
-
-  <div class="contact-box">
-    <label>Name</label>
-    <input type="text" placeholder="Enter your name"/>
-
-    <label>Email</label>
-    <input type="email" placeholder="Enter your email"/>
-
-    <label>Message</label>
-    <textarea rows="5" placeholder="Write your message..."></textarea>
-
-    <a class="btn" href="#">Send Message</a>
-  </div>
-</body>
-</html>
-
 </html>
