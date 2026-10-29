@@ -1,144 +1,406 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Asrarul Haque — Data Analyst Portfolio</title>
+  <meta name="description" content="Portfolio of Asrarul Haque, an aspiring Data Analyst skilled in SQL, Excel, Power BI, Tableau and Python." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Scroll progress bar -->
+  <div id="scrollProgress" class="scroll-progress"></div>
+
   <!-- NAVBAR -->
-  <header class="navbar">
-	<div class="brand">Asrarul Haque</div>
+  <header class="navbar" id="navbar">
+    <a href="#home" class="brand">Asrarul<span>.</span></a>
 
-	<!-- Desktop menu -->
-	<nav class="nav-desktop">
-	  <a href="#home">Home</a>
-	  <a href="#about">About</a>
-	  <a href="#skills">Skills</a>
-	  <a href="#background">Background</a>
-	  <a href="#projects">Projects</a>
-	  <a href="#contact">Contact</a>
-	</nav>
+    <nav class="nav-desktop" aria-label="Main navigation">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#background" class="nav-link">Background</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
 
-	<!-- Mobile hamburger -->
-	<button id="hamburger" aria-label="Open menu" class="hamburger">☰</button>
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark/light mode">🌙</button>
+      <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
-  <!-- Mobile dropdown -->
-  <div id="mobileMenu" class="mobile-menu hidden">
-	<a href="#home" class="m-link">Home</a>
-	<a href="#about" class="m-link">About</a>
-	<a href="#skills" class="m-link">Skills</a>
-	<a href="#background" class="m-link">Background</a>
-	<a href="#projects" class="m-link">Projects</a>
-	<a href="#contact" class="m-link">Contact</a>
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="#home" class="m-link">Home</a>
+    <a href="#about" class="m-link">About</a>
+    <a href="#skills" class="m-link">Skills</a>
+    <a href="#background" class="m-link">Background</a>
+    <a href="#projects" class="m-link">Projects</a>
+    <a href="#contact" class="m-link">Contact</a>
   </div>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-	<div class="hero-left">
-	  <h2 class="small-title">DATA ANALYST PORTFOLIO</h2>
-	  <h1 class="big-title">ASRARUL HAQUE</h1>
-	  <p class="tagline">I help people find insights through data.</p>
-	  <div class="hero-cta">
-		<a href="#projects" class="btn">View Projects</a>
-		<a href="Asrarul Haque Resume.pdf" class="btn-outline" download>Download Resume</a>
-	  </div>
-	</div>
+  <main>
 
-	<div class="hero-right">
-	  <!-- Replace photo.jpg with your own image file -->
-	  <img src="photo.jpg" alt="Asrarul Haque" class="profile-photo" />
-	</div>
-  </section>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-bg">
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+      </div>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-	<div class="container">
-	  <h2>About Me</h2>
-	  <p>
-	   Hi, I'm Asrarul Haque, an aspiring Data Analyst with a strong interest in data cleaning, analysis, and visualization. I have completed 75% of my Data Analytics training and enjoy using tools like Excel, SQL, and Google Sheets to find insights and solve problems. I believe in learning continuously and aim to help businesses make better data-driven decisions.
-	  </p>
-	</div>
-  </section>
+      <div class="hero-left reveal">
+        <span class="badge">🟢 Open to Entry-Level / Junior Data Analyst roles</span>
+        <h2 class="small-title">DATA ANALYST PORTFOLIO</h2>
+        <h1 class="big-title">Hi, I'm <span class="gradient-text">Asrarul Haque</span></h1>
+        <p class="typing-line">I am a <span id="typing" class="typing"></span><span class="cursor">|</span></p>
+        <p class="tagline">I help people find insights through data — turning raw numbers into clear dashboards and smart business decisions.</p>
 
-  <!-- SKILLS -->
-  <section id="skills" class="section alt">
-	<div class="container">
-	  <h2>Technical Skills</h2>
-	  <ul class="skills-grid">
-		<li>Excel (Advanced)</li>
-		<li>Google Sheets</li>
-		<li>SQL</li>
-		<li>Data Cleaning</li>
-		<li>Pivot Tables</li>
-		<li>Dashboards & Visualization</li>
-		<li>Power BI (basic)</li>
-		<li>Python (basics)</li>
-	  </ul>
-	</div>
-  </section>
+        <div class="hero-cta">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="Asrarul%20Haque%20Resume.pdf" class="btn-outline" download>Download Resume</a>
+        </div>
 
-  <!-- BACKGROUND -->
-  <section id="background" class="section">
-	<div class="container">
-	  <h2>Educational & Experience Background</h2>
-	  <ul class="bullet-list">
-		<li>10th, 12th, BCA completed</li>
-		<li>Data Analytics Course — 90% completed</li>
-	  </ul>
-	</div>
-  </section>
+        <div class="socials">
+          <a href="https://github.com/Asrarul320" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+          <a href="https://linkedin.com/in/asrarulhaque" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+          <a href="mailto:asrarul320@gmail.com" aria-label="Email">Email</a>
+        </div>
+      </div>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section alt">
-	<div class="container">
-	  <h2>Projects</h2>
+      <div class="hero-right reveal">
+        <div class="photo-wrap">
+          <img src="photo.jpg" alt="Asrarul Haque" class="profile-photo" />
+          <span class="float-chip chip-1">SQL</span>
+          <span class="float-chip chip-2">Power BI</span>
+          <span class="float-chip chip-3">Excel</span>
+          <span class="float-chip chip-4">Tableau</span>
+        </div>
+      </div>
 
-	  <div class="projects-grid">
-		<!-- You can duplicate these cards and fill details later -->
-		<article class="project-card">
-		  <h3>1. BCA Student Result Analysis Dashboard | Excel</h3>
-		  <p>Interactive dashboard using Pivot Tables, Charts, Slicers, and Conditional Formatting to analyze academic
-performance trends.</p>
-		</article>
+      <a href="#about" class="scroll-down" aria-label="Scroll down">↓</a>
+    </section>
 
-		<article class="project-card">
-		  <h3>2. College Database Management System | SQL</h3>
-		  <p>Designed relational databases and generated analytical reports using advanced SQL queries and database
-relationships.</p>
-		</article>
+    <!-- STATS -->
+    <section class="stats">
+      <div class="container stats-grid">
+        <div class="stat reveal">
+          <h3><span class="counter" data-target="250">0</span>+</h3>
+          <p>SQL Problems Solved</p>
+        </div>
+        <div class="stat reveal">
+          <h3><span class="counter" data-target="4">0</span>+</h3>
+          <p>End-to-End Projects</p>
+        </div>
+        <div class="stat reveal">
+          <h3><span class="counter" data-target="5">0</span></h3>
+          <p>Core Tools Mastered</p>
+        </div>
+        <div class="stat reveal">
+          <h3><span class="counter" data-target="1">0</span></h3>
+          <p>Gen AI Certification</p>
+        </div>
+      </div>
+    </section>
 
-		<article class="project-card">
-		  <h3>3. Global Superstore Sales & Profit Analytics Dashboard | Power BI</h3>
-		  <p>Developed KPI-driven dashboards with DAX measures to analyze sales, profit, customer, and product performance.</p>
-		</article>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <span class="eyebrow">Get to know me</span>
+        <h2 class="section-title">About Me</h2>
 
-		<article class="project-card">
-		  <h3>4. EV Vehicles Analytics Dashboard | Tableau</h3>
-		  <p>Created interactive dashboards to analyze electric vehicle adoption, market trends, and performance metrics.</p>
-		</article>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              Hi, I'm <strong>Asrarul Haque</strong>, an aspiring Data Analyst from New Delhi with a
+              <strong>Bachelor of Computer Applications (BCA)</strong> and hands-on experience in
+              SQL, Python, Excel, Power BI, Tableau and MySQL.
+            </p>
+            <p>
+              I enjoy data cleaning, exploratory data analysis, dashboard development and KPI reporting.
+              I have worked with Pandas, NumPy, DAX, Pivot Tables, SQL Joins, CTEs, Window Functions and Power Query
+              to analyze datasets and solve real business problems.
+            </p>
+            <p>
+              I believe in learning continuously, and I'm looking for an <strong>Entry-Level / Junior Data Analyst</strong>
+              role where I can contribute to business growth with my analytical and problem-solving skills.
+            </p>
+          </div>
 
-		<article class="project-card">
-		  <h3>5. Data Analysis Project | Python</h3>
-		  <p>Performed data cleaning, transformation, exploratory data analysis, statistical analysis, and visualization using Pandas,
-NumPy, and Matplotlib.</p>
-		</article>
+          <div class="about-card reveal">
+            <h3>Quick Facts</h3>
+            <ul class="facts">
+              <li><span>📍 Location</span><strong>New Delhi, India</strong></li>
+              <li><span>🎓 Degree</span><strong>BCA (2025)</strong></li>
+              <li><span>📜 Certification</span><strong>Data Analytics with Gen AI</strong></li>
+              <li><span>💼 Looking for</span><strong>Junior Data Analyst</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-	<div class="container">
-	  <h2>Contact Information</h2>
-	  <p>Email: <strong>asrarul320gmail.com</strong></p>
-	  <p>Phone (Whatsapp): <strong>+91 9580179879</strong></p>
-	  <p>Location: Zakir Nagar, Okhla, New Delhi</p>
-	</div>
-  </section>
+    <!-- SKILLS -->
+    <section id="skills" class="section alt">
+      <div class="container">
+        <span class="eyebrow">What I work with</span>
+        <h2 class="section-title">Technical Skills</h2>
+
+        <div class="skills-wrap">
+          <!-- Progress bars -->
+          <div class="skill-bars reveal">
+            <div class="skill">
+              <div class="skill-head"><span>SQL (MySQL)</span><span class="pct">90%</span></div>
+              <div class="bar"><div class="bar-fill" data-level="90"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>Microsoft Excel</span><span class="pct">90%</span></div>
+              <div class="bar"><div class="bar-fill" data-level="90"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>Power BI</span><span class="pct">85%</span></div>
+              <div class="bar"><div class="bar-fill" data-level="85"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>Tableau</span><span class="pct">80%</span></div>
+              <div class="bar"><div class="bar-fill" data-level="80"></div></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>Python (Pandas, NumPy, Matplotlib)</span><span class="pct">75%</span></div>
+              <div class="bar"><div class="bar-fill" data-level="75"></div></div>
+            </div>
+          </div>
+
+          <!-- Skill detail cards -->
+          <div class="skill-cards">
+            <div class="skill-card reveal">
+              <h4>🗄️ SQL</h4>
+              <p>Joins, Subqueries, CTEs, Window Functions, Aggregate Functions, GROUP BY, HAVING, Views</p>
+            </div>
+            <div class="skill-card reveal">
+              <h4>📗 Excel</h4>
+              <p>Pivot Tables, Pivot Charts, XLOOKUP, INDEX-MATCH, Power Query, Conditional Formatting, Data Validation</p>
+            </div>
+            <div class="skill-card reveal">
+              <h4>📊 Power BI</h4>
+              <p>DAX, Data Modeling, Relationships, KPI Dashboards, Power Query</p>
+            </div>
+            <div class="skill-card reveal">
+              <h4>📈 Tableau</h4>
+              <p>Dashboards, Filters, Parameters, Calculated Fields</p>
+            </div>
+            <div class="skill-card reveal">
+              <h4>🐍 Python</h4>
+              <p>Pandas, NumPy, Matplotlib for cleaning, EDA and visualization</p>
+            </div>
+            <div class="skill-card reveal">
+              <h4>🧠 Analytics</h4>
+              <p>Data Cleaning, EDA, Trend Analysis, Business Intelligence, Report Automation, Statistical Analysis</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKGROUND -->
+    <section id="background" class="section">
+      <div class="container">
+        <span class="eyebrow">My journey</span>
+        <h2 class="section-title">Education & Certification</h2>
+
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <span class="dot"></span>
+            <div class="timeline-card">
+              <span class="date">June 2026</span>
+              <h3>Data Analytics with Gen AI</h3>
+              <p class="sub">PW Skills — Certification</p>
+              <p>Completed a hands-on data analytics program covering SQL, Excel, Power BI, Tableau, Python and Gen AI tools.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="dot"></span>
+            <div class="timeline-card">
+              <span class="date">Graduated July 2025</span>
+              <h3>Bachelor of Computer Applications (BCA)</h3>
+              <p class="sub">Shanti Institute of Technology, Kurali, Meerut</p>
+              <p>Percentage: <strong>68.78%</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievements reveal">
+          <h3>🏆 Achievements</h3>
+          <ul>
+            <li>Solved <strong>250+ SQL problems</strong> on HackerRank, LeetCode, CodeChef and W3Schools.</li>
+            <li>Developed <strong>4+ end-to-end Data Analytics projects</strong> using Excel, SQL, Power BI, Tableau and Python.</li>
+            <li>Built interactive dashboards for business reporting and decision-making.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section alt">
+      <div class="container">
+        <span class="eyebrow">My work</span>
+        <h2 class="section-title">Projects</h2>
+
+        <div class="filters reveal" role="tablist" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="excel">Excel</button>
+          <button class="filter-btn" data-filter="sql">SQL</button>
+          <button class="filter-btn" data-filter="powerbi">Power BI</button>
+          <button class="filter-btn" data-filter="tableau">Tableau</button>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Project 1 -->
+          <article class="project-card reveal" data-category="excel">
+            <div class="project-top">
+              <span class="project-icon">📗</span>
+              <span class="tag">Excel</span>
+            </div>
+            <h3>BCA Student Performance Dashboard</h3>
+            <p>Interactive Excel dashboard analyzing student academic performance across semesters.</p>
+            <ul class="project-points">
+              <li>Built with Pivot Tables, Charts and Slicers</li>
+              <li>Cleaned and transformed raw student data</li>
+              <li>Generated topper analysis and pass/fail insights</li>
+            </ul>
+            <div class="chips"><span>Pivot Tables</span><span>Charts</span><span>Slicers</span></div>
+            <div class="project-links">
+              <!-- Replace # with your real project link -->
+              <a href="#" target="_blank" rel="noopener">View Project →</a>
+              <a href="https://github.com/Asrarul320" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card reveal" data-category="sql">
+            <div class="project-top">
+              <span class="project-icon">🗄️</span>
+              <span class="tag">SQL</span>
+            </div>
+            <h3>College Database Management System</h3>
+            <p>A relational MySQL database designed to manage students and courses with meaningful reports.</p>
+            <ul class="project-points">
+              <li>Designed tables, relationships and constraints</li>
+              <li>Wrote queries using Joins, Aggregate Functions, Subqueries and CTEs</li>
+              <li>Generated student and course reports</li>
+            </ul>
+            <div class="chips"><span>MySQL</span><span>Joins</span><span>CTEs</span><span>Subqueries</span></div>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener">View Project →</a>
+              <a href="https://github.com/Asrarul320" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card reveal" data-category="powerbi">
+            <div class="project-top">
+              <span class="project-icon">📊</span>
+              <span class="tag">Power BI</span>
+            </div>
+            <h3>Global Superstore Dashboard</h3>
+            <p>Interactive Power BI dashboard analyzing overall business performance.</p>
+            <ul class="project-points">
+              <li>Created DAX measures, calculated columns and KPI cards</li>
+              <li>Designed visual reports tracking key indicators</li>
+              <li>Supports data-driven decision-making</li>
+            </ul>
+            <div class="chips"><span>DAX</span><span>KPI Cards</span><span>Data Modeling</span></div>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener">View Project →</a>
+              <a href="https://github.com/Asrarul320" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card reveal" data-category="tableau">
+            <div class="project-top">
+              <span class="project-icon">📈</span>
+              <span class="tag">Tableau</span>
+            </div>
+            <h3>EV Vehicles Analysis Dashboard</h3>
+            <p>Interactive Tableau dashboard exploring the electric vehicle market.</p>
+            <ul class="project-points">
+              <li>Analyzed EV market trends and model performance</li>
+              <li>Showed state-wise distribution of vehicles</li>
+              <li>Used charts, filters and KPIs to present clear insights</li>
+            </ul>
+            <div class="chips"><span>Filters</span><span>KPIs</span><span>Charts</span></div>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener">View Project →</a>
+              <a href="https://github.com/Asrarul320" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <span class="eyebrow">Let's connect</span>
+        <h2 class="section-title">Contact Me</h2>
+
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <p>
+              Have a data project, an opportunity or just want to say hi?
+              Send me a message and I'll get back to you soon.
+            </p>
+            <ul class="contact-list">
+              <li>📧 <a href="mailto:asrarul320@gmail.com">asrarul320@gmail.com</a></li>
+              <li>📱 <a href="https://wa.me/919580179879" target="_blank" rel="noopener">+91 95801 79879 (WhatsApp)</a></li>
+              <li>💼 <a href="https://linkedin.com/in/asrarulhaque" target="_blank" rel="noopener">linkedin.com/in/asrarulhaque</a></li>
+              <li>🐙 <a href="https://github.com/Asrarul320" target="_blank" rel="noopener">github.com/Asrarul320</a></li>
+              <li>📍 Zakir Nagar, Okhla, New Delhi</li>
+            </ul>
+          </div>
+
+          <form id="contactForm" class="contact-form reveal" novalidate>
+            <div class="field">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required />
+            </div>
+            <div class="field">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn full">Send Message</button>
+            <p id="formStatus" class="form-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <footer class="footer">
-	© <span id="year"></span> Asrarul Haque — Data Analyst Portfolio
+    <p>© <span id="year"></span> Asrarul Haque — Data Analyst Portfolio</p>
+    <p class="footer-sub">Built with HTML, CSS & JavaScript</p>
   </footer>
+
+  <!-- Back to top -->
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
 
   <script src="script.js"></script>
 </body>
