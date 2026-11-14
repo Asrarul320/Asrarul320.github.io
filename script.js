@@ -1,6 +1,6 @@
 /* =========================================================
    Asrarul Haque — Data Analyst Portfolio
-   script.js
+   script.js  (mobile-friendly, no lightbox)
    ========================================================= */
 
 (function () {
@@ -10,34 +10,38 @@
   const $ = (sel, parent = document) => parent.querySelector(sel);
   const $$ = (sel, parent = document) => Array.from(parent.querySelectorAll(sel));
   const hasIO = "IntersectionObserver" in window;
+  const reduceMotion =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Footer year ---------- */
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* =========================================================
-     THEME TOGGLE (dark default, saved in localStorage)
+     THEME TOGGLE
+     (saved theme page load se pehle <head> me lag chuka hota hai,
+      yahan sirf button icon aur toggle sambhalte hain)
      ========================================================= */
   const root = document.documentElement;
   const themeBtn = $("#themeToggle");
+  const themeMeta = $('meta[name="theme-color"]');
 
   function applyTheme(theme) {
-    if (theme === "light") {
-      root.setAttribute("data-theme", "light");
-      if (themeBtn) themeBtn.textContent = "☀️";
-    } else {
-      root.removeAttribute("data-theme");
-      if (themeBtn) themeBtn.textContent = "🌙";
+    const isLight = theme === "light";
+    if (isLight) root.setAttribute("data-theme", "light");
+    else root.removeAttribute("data-theme");
+
+    if (themeBtn) {
+      themeBtn.textContent = isLight ? "☀️" : "🌙";
+      themeBtn.setAttribute(
+        "aria-label",
+        isLight ? "Switch to dark mode" : "Switch to light mode"
+      );
     }
-    const meta = $('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "light" ? "#f5f8fc" : "#0b1220");
+    if (themeMeta) themeMeta.setAttribute("content", isLight ? "#f5f8fc" : "#0b1220");
   }
 
-  let savedTheme = "dark";
-  try {
-    savedTheme = localStorage.getItem("theme") || "dark";
-  } catch (e) {}
-  applyTheme(savedTheme);
+  applyTheme(root.getAttribute("data-theme") === "light" ? "light" : "dark");
 
   if (themeBtn) {
     themeBtn.addEventListener("click", () => {
@@ -60,6 +64,7 @@
     hamburger.classList.toggle("open", open);
     mobileMenu.classList.toggle("open", open);
     hamburger.setAttribute("aria-expanded", String(open));
+    hamburger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     mobileMenu.setAttribute("aria-hidden", String(!open));
   }
 
@@ -69,49 +74,70 @@
       setMenu(!mobileMenu.classList.contains("open"));
     });
 
+    // menu ka link dabane par menu band
     $$(".m-link", mobileMenu).forEach((link) =>
       link.addEventListener("click", () => setMenu(false))
     );
 
+    // bahar tap/click karne par band
     document.addEventListener("click", (e) => {
       if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) setMenu(false);
     });
 
+    // screen bada hone par (tablet rotate / laptop) band
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 900) setMenu(false);
+      if (window.innerWidth >= 900) setMenu(false);
     });
   }
 
+  // Esc dabane par menu band
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenu(false);
+  });
+
   /* =========================================================
      SCROLL EFFECTS: navbar, progress bar, back-to-top
+     (requestAnimationFrame se, taaki phone par scroll smooth rahe)
      ========================================================= */
   const navbar = $("#navbar");
   const progress = $("#scrollProgress");
   const toTop = $("#toTop");
+  let ticking = false;
 
-  function onScroll() {
-    const y = window.scrollY || document.documentElement.scrollTop;
+  function updateScrollUI() {
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
     if (navbar) navbar.classList.toggle("scrolled", y > 20);
     if (progress) progress.style.width = (docHeight > 0 ? (y / docHeight) * 100 : 0) + "%";
     if (toTop) toTop.classList.toggle("visible", y > 500);
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateScrollUI);
+    }
   }
 
   window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  window.addEventListener("resize", onScroll, { passive: true });
+  updateScrollUI();
 
   if (toTop) {
-    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    toTop.addEventListener("click", () =>
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })
+    );
   }
 
   /* =========================================================
-     ACTIVE NAV LINK (highlight the section in view)
+     ACTIVE NAV LINK (jo section dikh raha ho wo highlight)
      ========================================================= */
   const navLinks = $$(".nav-link");
   const sections = $$("main section[id]");
 
-  if (hasIO && sections.length) {
+  if (hasIO && sections.length && navLinks.length) {
     const spy = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -141,34 +167,39 @@
   ];
 
   if (typingEl) {
-    let roleIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
+    if (reduceMotion) {
+      // animation pasand nahi karne waalon ke liye seedha text
+      typingEl.textContent = roles[0];
+    } else {
+      let roleIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
 
-    function type() {
-      const current = roles[roleIndex];
+      const type = () => {
+        const current = roles[roleIndex];
 
-      if (!deleting) {
-        charIndex++;
-        typingEl.textContent = current.slice(0, charIndex);
-        if (charIndex === current.length) {
-          deleting = true;
-          return setTimeout(type, 1600);
+        if (!deleting) {
+          charIndex++;
+          typingEl.textContent = current.slice(0, charIndex);
+          if (charIndex === current.length) {
+            deleting = true;
+            return setTimeout(type, 1600);
+          }
+          return setTimeout(type, 80);
         }
-        return setTimeout(type, 80);
-      }
 
-      charIndex--;
-      typingEl.textContent = current.slice(0, charIndex);
-      if (charIndex === 0) {
-        deleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        return setTimeout(type, 400);
-      }
-      setTimeout(type, 40);
+        charIndex--;
+        typingEl.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          return setTimeout(type, 400);
+        }
+        setTimeout(type, 40);
+      };
+
+      type();
     }
-
-    type();
   }
 
   /* =========================================================
@@ -176,27 +207,32 @@
      ========================================================= */
   const revealEls = $$(".reveal");
 
-  if (hasIO) {
+  function showEl(el) {
+    el.classList.add("show");
+    // animation ke baad delay hata do, taaki hover effect turant chale
+    setTimeout(() => {
+      el.style.transitionDelay = "";
+    }, 1000);
+  }
+
+  if (hasIO && !reduceMotion) {
     const revealObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const el = entry.target;
-            el.classList.add("show");
-            obs.unobserve(el);
-            // animation khatam hone ke baad delay hata do,
-            // warna cards ka hover effect der se chalta hai
-            setTimeout(() => {
-              el.style.transitionDelay = "";
-            }, 1000);
+            showEl(entry.target);
+            obs.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
     );
-    revealEls.forEach((el, i) => {
-      // small stagger for siblings
-      el.style.transitionDelay = (i % 4) * 80 + "ms";
+
+    revealEls.forEach((el) => {
+      // delay sirf ek hi parent ke andar ke bhai-behan elements me (max 4)
+      const siblings = el.parentElement ? $$(":scope > .reveal", el.parentElement) : [el];
+      const index = Math.max(siblings.indexOf(el), 0);
+      el.style.transitionDelay = (index % 4) * 80 + "ms";
       revealObserver.observe(el);
     });
   } else {
@@ -204,7 +240,7 @@
   }
 
   /* =========================================================
-     SKILL BARS (animate width when visible)
+     SKILL BARS (visible hone par fill)
      ========================================================= */
   const barFills = $$(".bar-fill");
   const skillBarsBox = $(".skill-bars");
@@ -215,7 +251,7 @@
     });
   }
 
-  if (skillBarsBox && hasIO) {
+  if (skillBarsBox && hasIO && !reduceMotion) {
     const barObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -225,7 +261,7 @@
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     barObserver.observe(skillBarsBox);
   } else {
@@ -239,20 +275,20 @@
 
   function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10) || 0;
-    const duration = 1800;
+    const duration = 1600;
     const start = performance.now();
 
     function step(now) {
-      const progressRatio = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progressRatio, 3); // easeOutCubic
+      const ratio = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - ratio, 3); // easeOutCubic
       el.textContent = Math.floor(eased * target);
-      if (progressRatio < 1) requestAnimationFrame(step);
+      if (ratio < 1) requestAnimationFrame(step);
       else el.textContent = target;
     }
     requestAnimationFrame(step);
   }
 
-  if (hasIO) {
+  if (hasIO && !reduceMotion) {
     const counterObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -262,7 +298,7 @@
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.5 }
     );
     counters.forEach((c) => counterObserver.observe(c));
   } else {
@@ -279,74 +315,26 @@
     btn.addEventListener("click", () => {
       const filter = btn.dataset.filter;
 
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+      filterBtns.forEach((b) => {
+        b.classList.toggle("active", b === btn);
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
 
       projectCards.forEach((card) => {
         const match = filter === "all" || card.dataset.category === filter;
         card.classList.toggle("hide", !match);
-        if (match) card.classList.add("show"); // make sure it is visible
+        if (match) card.classList.add("show"); // card invisible na reh jaye
       });
+
+      // mobile par active button screen me aa jaye (filters side-swipe hote hain)
+      if (btn.scrollIntoView) {
+        btn.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+      }
     });
   });
 
   /* =========================================================
-     LIGHTBOX (dashboard screenshot bada dekhne ke liye)
-     ========================================================= */
-  const lightbox = $("#lightbox");
-  const lightboxImg = $("#lightboxImg");
-  const lightboxClose = $("#lightboxClose");
-  let lastFocused = null;
-
-  function openLightbox(src, alt) {
-    if (!lightbox || !lightboxImg) return;
-    lastFocused = document.activeElement;
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || "";
-    lightbox.classList.add("open");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden"; // peeche ka page scroll na ho
-    if (lightboxClose) lightboxClose.focus();
-  }
-
-  function closeLightbox() {
-    if (!lightbox || !lightbox.classList.contains("open")) return;
-    lightbox.classList.remove("open");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    if (lastFocused && lastFocused.focus) lastFocused.focus();
-  }
-
-  if (lightbox && lightboxImg) {
-    // [data-lightbox] wale links par click
-    $$("[data-lightbox]").forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault(); // naya tab na khule
-        const img = $("img", link);
-        openLightbox(link.getAttribute("href"), img ? img.alt : "");
-      });
-    });
-
-    // Bahar ya image par click karne se band
-    lightbox.addEventListener("click", closeLightbox);
-    if (lightboxClose) {
-      lightboxClose.addEventListener("click", (e) => {
-        e.stopPropagation();
-        closeLightbox();
-      });
-    }
-  }
-
-  // Esc dabane par lightbox aur mobile menu dono band
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeLightbox();
-      setMenu(false);
-    }
-  });
-
-  /* =========================================================
-     CONTACT FORM (validation + opens email app)
+     CONTACT FORM (validation + email app kholta hai)
      ========================================================= */
   const form = $("#contactForm");
   const statusEl = $("#formStatus");
@@ -363,7 +351,10 @@
   }
 
   if (form) {
-    const fields = $$("input, textarea", form);
+    const nameInput = $("#name");
+    const emailInput = $("#email");
+    const messageInput = $("#message");
+    const fields = [nameInput, emailInput, messageInput].filter(Boolean);
 
     fields.forEach((f) =>
       f.addEventListener("input", () => {
@@ -375,28 +366,29 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const name = $("#name").value.trim();
-      const email = $("#email").value.trim();
-      const message = $("#message").value.trim();
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
 
-      let valid = true;
       fields.forEach((f) => f.classList.remove("error"));
+      let firstInvalid = null;
 
       if (!name) {
-        $("#name").classList.add("error");
-        valid = false;
+        nameInput.classList.add("error");
+        firstInvalid = firstInvalid || nameInput;
       }
       if (!isValidEmail(email)) {
-        $("#email").classList.add("error");
-        valid = false;
+        emailInput.classList.add("error");
+        firstInvalid = firstInvalid || emailInput;
       }
       if (message.length < 5) {
-        $("#message").classList.add("error");
-        valid = false;
+        messageInput.classList.add("error");
+        firstInvalid = firstInvalid || messageInput;
       }
 
-      if (!valid) {
+      if (firstInvalid) {
         setStatus("Please fill all fields correctly.", "error");
+        firstInvalid.focus();
         return;
       }
 
@@ -405,9 +397,14 @@
         "Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message
       );
 
-      setStatus("Opening your email app... Please press Send there.", "success");
+      setStatus(
+        "Opening your email app... Press Send there. (If it doesn't open, email me at " +
+          MY_EMAIL +
+          ")",
+        "success"
+      );
       window.location.href = "mailto:" + MY_EMAIL + "?subject=" + subject + "&body=" + body;
-      form.reset();
+      // form reset nahi kiya, taaki email app na khule to message na khoye
     });
   }
 })();
