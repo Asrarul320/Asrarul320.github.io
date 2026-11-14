@@ -11,14 +11,19 @@
 
   <!-- Saved theme ko page dikhne se pehle laga do (white flash nahi aayega) -->
   <script>
-    (function () {
-      try {
-        if (localStorage.getItem("theme") === "light") {
-          document.documentElement.setAttribute("data-theme", "light");
-        }
-      } catch (e) {}
-    })();
-  </script>
+  (function () {
+    try {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    } catch (e) {}
+
+    // Page hamesha Home (sabse upar) se khule
+    try {
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    } catch (e) {}
+  })();
+</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
