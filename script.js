@@ -2,6 +2,27 @@
    Asrarul Haque — Data Analyst Portfolio
    script.js  (mobile-friendly, no lightbox)
    ========================================================= */
+  /* =========================================================
+     HAMESHA HOME SE KHULE
+     (purani scroll position aur URL ka #about ignore karta hai)
+     ========================================================= */
+  function goHome() {
+    // URL se #about, #projects jaisa hash hata do
+    if (location.hash) {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+    // smooth-scroll band karke seedha top par jao
+    const html = document.documentElement;
+    html.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = "";
+  }
+
+  goHome();                                   // page banate hi
+  window.addEventListener("load", goHome);    // sab load hone ke baad (browser restore kare to dobara)
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) goHome();                // Back button se wapas aane par
+  });
 
 (function () {
   "use strict";
