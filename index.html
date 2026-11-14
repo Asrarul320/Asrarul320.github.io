@@ -98,7 +98,7 @@
           <p>SQL Problems Solved</p>
         </div>
         <div class="stat reveal">
-          <h3><span class="counter" data-target="4">0</span>+</h3>
+          <h3><span class="counter" data-target="5">0</span>+</h3>
           <p>End-to-End Projects</p>
         </div>
         <div class="stat reveal">
@@ -188,7 +188,7 @@
             </div>
             <div class="skill-card reveal">
               <h4>📗 Excel</h4>
-              <p>Pivot Tables, Pivot Charts, XLOOKUP, INDEX-MATCH, Power Query, Conditional Formatting, Data Validation</p>
+              <p>Pivot Tables, Pivot Charts, XLOOKUP, INDEX-MATCH, TEXTJOIN + FILTER, Power Query, Conditional Formatting, Data Validation</p>
             </div>
             <div class="skill-card reveal">
               <h4>📊 Power BI</h4>
@@ -243,7 +243,7 @@
           <h3>🏆 Achievements</h3>
           <ul>
             <li>Solved <strong>250+ SQL problems</strong> on HackerRank, LeetCode, CodeChef and W3Schools.</li>
-            <li>Developed <strong>4+ end-to-end Data Analytics projects</strong> using Excel, SQL, Power BI, Tableau and Python.</li>
+            <li>Developed <strong>5+ end-to-end Data Analytics projects</strong> using Excel, SQL, Power BI, Tableau and Python.</li>
             <li>Built interactive dashboards for business reporting and decision-making.</li>
           </ul>
         </div>
@@ -347,6 +347,47 @@
             </div>
           </article>
 
+          <!-- Project 5 (NEW) : Telecaller Performance Dashboard | Excel -->
+          <article class="project-card project-featured reveal" data-category="excel">
+            <!-- Dashboard screenshot: click par bada hokar khulega -->
+            <a href="telecaller-dashboard.jpeg" class="project-thumb" data-lightbox target="_blank" rel="noopener" aria-label="Open Telecaller Performance Dashboard image">
+              <img src="telecaller-dashboard.jpeg" alt="Telecaller Performance Dashboard built in Microsoft Excel" loading="lazy" />
+              <span class="thumb-hint">🔍 Click to enlarge</span>
+            </a>
+
+            <div class="project-top">
+              <span class="project-icon">📗</span>
+              <div class="tag-group">
+                <span class="tag tag-new">New</span>
+                <span class="tag">Excel</span>
+              </div>
+            </div>
+            <h3>Telecaller Performance Dashboard</h3>
+            <p>Excel dashboard analyzing NOP conversions, inactivity, top performers and defaulters across a telecaller team (25 Aug – 13 Nov 2026).</p>
+
+            <div class="project-metrics">
+              <div><strong>11</strong><span>Telecallers</span></div>
+              <div><strong>17</strong><span>NOPs</span></div>
+              <div><strong>₹19.1L</strong><span>Wat Volume</span></div>
+            </div>
+
+            <ul class="project-points">
+              <li>Turned one long MIS sheet into a single formula-linked dashboard with a KPI strip</li>
+              <li>Built dynamic Top and Defaulter lists using TEXTJOIN + FILTER</li>
+              <li>Flagged inactivity risk with Zero Days and conditional formatting</li>
+              <li>Day-of-week analysis: Friday brings 47.1% of volume, Tuesday has 0 NOPs</li>
+              <li>Measured conversion speed: 1st NOP takes 46.1 days, 2nd follows in 18.8 days</li>
+              <li>Compared reporting-lead teams and gave 6 business recommendations</li>
+            </ul>
+            <div class="chips">
+              <span>TEXTJOIN + FILTER</span><span>Conditional Formatting</span><span>Combo Chart</span><span>Date Calculations</span><span>IFERROR</span><span>KPI Dashboard</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Asrarul320/Data-Analytics-Projects/tree/main/01_Excel_Project/06_Insurance_Employees_Analysis" target="_blank" rel="noopener">View Project →</a>
+              <a href="https://github.com/Asrarul320/Data-Analytics-Projects" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -398,6 +439,12 @@
     <p>© <span id="year"></span> Asrarul Haque — Data Analyst Portfolio</p>
     <p class="footer-sub">Built with HTML, CSS & JavaScript</p>
   </footer>
+
+  <!-- Image lightbox (dashboard screenshot bada dikhane ke liye) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="lightboxClose" class="lightbox-close" aria-label="Close image">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
 
   <!-- Back to top -->
   <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
