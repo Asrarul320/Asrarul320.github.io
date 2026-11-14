@@ -420,6 +420,93 @@ button{font-family:inherit}
 }
 .project-links a:hover{opacity:.8;transform:translateX(3px)}
 
+/* ---------- NEW: FEATURED PROJECT (Telecaller Dashboard) ---------- */
+/* Desktop par ye card 2 column jitna chauda hoga */
+.project-featured{
+  grid-column:span 2;
+  border-color:rgba(77,163,255,0.35);
+  background:
+    linear-gradient(var(--card),var(--card)) padding-box,
+    linear-gradient(135deg,var(--accent),var(--accent-2)) border-box;
+  border:1px solid transparent;
+}
+
+/* Screenshot box */
+.project-thumb{
+  position:relative;display:block;overflow:hidden;
+  aspect-ratio:16/9;margin-bottom:18px;
+  border-radius:12px;border:1px solid var(--border);
+  background:var(--bg);cursor:zoom-in;
+}
+.project-thumb img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  transition:transform .5s ease;
+}
+.project-thumb:hover img{transform:scale(1.05)}
+.thumb-hint{
+  position:absolute;right:10px;bottom:10px;
+  padding:5px 12px;border-radius:999px;
+  background:rgba(11,18,32,0.8);color:#fff;
+  font-size:12px;font-weight:600;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(6px);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.project-thumb:hover .thumb-hint,
+.project-thumb:focus-visible .thumb-hint{opacity:1;transform:translateY(0)}
+
+/* Tags (New + Excel) */
+.tag-group{display:flex;gap:8px;align-items:center}
+.tag-new{
+  color:#fff;border-color:transparent;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+}
+
+/* Key numbers row */
+.project-metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;
+}
+.project-metrics div{
+  text-align:center;padding:12px 8px;border-radius:12px;
+  background:var(--glass);border:1px solid var(--border);
+}
+.project-metrics strong{
+  display:block;font-size:20px;font-weight:800;line-height:1.2;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.project-metrics span{font-size:12px;font-weight:600;color:var(--muted)}
+
+/* ---------- NEW: IMAGE LIGHTBOX ---------- */
+.lightbox{
+  position:fixed;inset:0;z-index:300;
+  display:flex;align-items:center;justify-content:center;
+  padding:56px 16px 24px;
+  background:rgba(4,8,16,0.92);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility .3s ease;
+  cursor:zoom-out;
+}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img{
+  max-width:100%;max-height:100%;width:auto;height:auto;
+  object-fit:contain;border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  transform:scale(.95);transition:transform .3s ease;
+}
+.lightbox.open img{transform:scale(1)}
+.lightbox-close{
+  position:absolute;top:14px;right:14px;
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.1);color:#fff;
+  font-size:18px;cursor:pointer;
+  transition:background .25s ease,transform .25s ease;
+}
+.lightbox-close:hover{background:rgba(255,255,255,0.22);transform:rotate(90deg)}
+
 /* ---------- CONTACT ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;align-items:start}
 .contact-info > p{color:var(--muted);font-size:17px;margin-bottom:20px}
@@ -448,59 +535,4 @@ button{font-family:inherit}
 .field input:focus,.field textarea:focus{
   outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(77,163,255,0.2);
 }
-.field input.error,.field textarea.error{border-color:#ff5c6c}
-.form-status{margin-top:12px;font-size:14px;font-weight:600;min-height:20px}
-.form-status.success{color:#2ecc71}
-.form-status.error{color:#ff5c6c}
-
-/* ---------- FOOTER ---------- */
-.footer{
-  padding:30px 24px;text-align:center;color:var(--muted);
-  border-top:1px solid var(--border);background:var(--bg-alt);
-}
-.footer-sub{font-size:13px;margin-top:4px;opacity:.8}
-
-/* ---------- BACK TO TOP ---------- */
-.to-top{
-  position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;
-  border:0;cursor:pointer;font-size:20px;color:#fff;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  box-shadow:0 8px 24px rgba(77,163,255,0.4);z-index:90;
-  opacity:0;visibility:hidden;transform:translateY(20px);
-  transition:all .3s ease;
-}
-.to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
-.to-top:hover{transform:translateY(-4px)}
-
-/* ---------- RESPONSIVE ---------- */
-@media (max-width:900px){
-  .nav-desktop{display:none}
-  .hamburger{display:flex}
-
-  .hero{flex-direction:column-reverse;text-align:center;padding-top:100px;gap:36px}
-  .hero-left{max-width:100%}
-  .tagline{margin-inline:auto}
-  .hero-cta,.socials{justify-content:center}
-  .chip-1{left:-4%}
-  .chip-2{right:-4%}
-  .chip-3{left:-4%}
-  .chip-4{right:-2%}
-  .scroll-down{display:none}
-
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .about-grid,.skills-wrap,.contact-grid{grid-template-columns:1fr}
-}
-
-@media (max-width:560px){
-  .section{padding:70px 18px}
-  .skill-cards{grid-template-columns:1fr}
-  .projects-grid{grid-template-columns:1fr}
-  .btn,.btn-outline{width:100%;text-align:center}
-  .hero-cta{flex-direction:column}
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion:reduce){
-  *{animation:none !important;transition:none !important}
-  .reveal{opacity:1;transform:none}
-  }
+.field input.error,.field textarea.error{border-color:#ff5c6
