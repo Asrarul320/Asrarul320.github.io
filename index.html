@@ -2,18 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Asrarul Haque — Data Analyst Portfolio</title>
   <meta name="description" content="Portfolio of Asrarul Haque, an aspiring Data Analyst skilled in SQL, Excel, Power BI, Tableau and Python." />
   <meta name="theme-color" content="#0b1220" />
+  <meta name="color-scheme" content="dark light" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+
+  <!-- Saved theme ko page dikhne se pehle laga do (white flash nahi aayega) -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- JavaScript band ho to bhi content dikhe -->
+  <noscript>
+    <style>
+      .reveal{opacity:1 !important;transform:none !important}
+      .bar-fill{width:85% !important}
+    </style>
+  </noscript>
 </head>
 <body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- Scroll progress bar -->
   <div id="scrollProgress" class="scroll-progress"></div>
@@ -32,28 +54,28 @@
     </nav>
 
     <div class="nav-actions">
-      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark/light mode">🌙</button>
-      <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark/light mode" type="button">🌙</button>
+      <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
     <a href="#home" class="m-link">Home</a>
     <a href="#about" class="m-link">About</a>
     <a href="#skills" class="m-link">Skills</a>
     <a href="#background" class="m-link">Background</a>
     <a href="#projects" class="m-link">Projects</a>
     <a href="#contact" class="m-link">Contact</a>
-  </div>
+  </nav>
 
-  <main>
+  <main id="main">
 
     <!-- HERO -->
     <section id="home" class="hero">
-      <div class="hero-bg">
+      <div class="hero-bg" aria-hidden="true">
         <span class="blob blob-1"></span>
         <span class="blob blob-2"></span>
       </div>
@@ -62,7 +84,7 @@
         <span class="badge">🟢 Open to Entry-Level / Junior Data Analyst roles</span>
         <h2 class="small-title">DATA ANALYST PORTFOLIO</h2>
         <h1 class="big-title">Hi, I'm <span class="gradient-text">Asrarul Haque</span></h1>
-        <p class="typing-line">I am a <span id="typing" class="typing"></span><span class="cursor">|</span></p>
+        <p class="typing-line">I am a <span id="typing" class="typing"></span><span class="cursor" aria-hidden="true">|</span></p>
         <p class="tagline">I help people find insights through data — turning raw numbers into clear dashboards and smart business decisions.</p>
 
         <div class="hero-cta">
@@ -79,11 +101,11 @@
 
       <div class="hero-right reveal">
         <div class="photo-wrap">
-          <img src="photo.jpg" alt="Asrarul Haque" class="profile-photo" />
-          <span class="float-chip chip-1">SQL</span>
-          <span class="float-chip chip-2">Power BI</span>
-          <span class="float-chip chip-3">Excel</span>
-          <span class="float-chip chip-4">Tableau</span>
+          <img src="photo.jpg" alt="Asrarul Haque" class="profile-photo" width="340" height="340" fetchpriority="high" decoding="async" />
+          <span class="float-chip chip-1" aria-hidden="true">SQL</span>
+          <span class="float-chip chip-2" aria-hidden="true">Power BI</span>
+          <span class="float-chip chip-3" aria-hidden="true">Excel</span>
+          <span class="float-chip chip-4" aria-hidden="true">Tableau</span>
         </div>
       </div>
 
@@ -91,7 +113,7 @@
     </section>
 
     <!-- STATS -->
-    <section class="stats">
+    <section class="stats" aria-label="Quick numbers">
       <div class="container stats-grid">
         <div class="stat reveal">
           <h3><span class="counter" data-target="250">0</span>+</h3>
@@ -256,12 +278,12 @@
         <span class="eyebrow">My work</span>
         <h2 class="section-title">Projects</h2>
 
-        <div class="filters reveal" role="tablist" aria-label="Filter projects">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="excel">Excel</button>
-          <button class="filter-btn" data-filter="sql">SQL</button>
-          <button class="filter-btn" data-filter="powerbi">Power BI</button>
-          <button class="filter-btn" data-filter="tableau">Tableau</button>
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="excel" type="button">Excel</button>
+          <button class="filter-btn" data-filter="sql" type="button">SQL</button>
+          <button class="filter-btn" data-filter="powerbi" type="button">Power BI</button>
+          <button class="filter-btn" data-filter="tableau" type="button">Tableau</button>
         </div>
 
         <div class="projects-grid">
@@ -348,40 +370,20 @@
           </article>
 
           <!-- Project 5 (NEW) : Telecaller Performance Dashboard | Excel -->
-          <article class="project-card project-featured reveal" data-category="excel">
-            <!-- Dashboard screenshot: click par bada hokar khulega -->
-            <a href="telecaller-dashboard.jpeg" class="project-thumb" data-lightbox target="_blank" rel="noopener" aria-label="Open Telecaller Performance Dashboard image">
-              <img src="telecaller-dashboard.jpeg" alt="Telecaller Performance Dashboard built in Microsoft Excel" loading="lazy" />
-              <span class="thumb-hint">🔍 Click to enlarge</span>
-            </a>
-
+          <article class="project-card reveal" data-category="excel">
             <div class="project-top">
               <span class="project-icon">📗</span>
-              <div class="tag-group">
-                <span class="tag tag-new">New</span>
-                <span class="tag">Excel</span>
-              </div>
+              <span class="tag">Excel</span>
             </div>
             <h3>Telecaller Performance Dashboard</h3>
-            <p>Excel dashboard analyzing NOP conversions, inactivity, top performers and defaulters across a telecaller team (25 Aug – 13 Nov 2026).</p>
-
-            <div class="project-metrics">
-              <div><strong>11</strong><span>Telecallers</span></div>
-              <div><strong>17</strong><span>NOPs</span></div>
-              <div><strong>₹19.1L</strong><span>Wat Volume</span></div>
-            </div>
-
+            <p>Excel dashboard analyzing NOP conversions, inactivity, top performers and defaulters of a telecaller team (25 Aug – 13 Nov 2026).</p>
             <ul class="project-points">
-              <li>Turned one long MIS sheet into a single formula-linked dashboard with a KPI strip</li>
+              <li>Turned one long MIS sheet into a formula-linked dashboard with KPI cards</li>
               <li>Built dynamic Top and Defaulter lists using TEXTJOIN + FILTER</li>
               <li>Flagged inactivity risk with Zero Days and conditional formatting</li>
-              <li>Day-of-week analysis: Friday brings 47.1% of volume, Tuesday has 0 NOPs</li>
-              <li>Measured conversion speed: 1st NOP takes 46.1 days, 2nd follows in 18.8 days</li>
-              <li>Compared reporting-lead teams and gave 6 business recommendations</li>
+              <li>Day-of-week and conversion-speed analysis with business recommendations</li>
             </ul>
-            <div class="chips">
-              <span>TEXTJOIN + FILTER</span><span>Conditional Formatting</span><span>Combo Chart</span><span>Date Calculations</span><span>IFERROR</span><span>KPI Dashboard</span>
-            </div>
+            <div class="chips"><span>TEXTJOIN + FILTER</span><span>Conditional Formatting</span><span>Combo Chart</span><span>IFERROR</span></div>
             <div class="project-links">
               <a href="https://github.com/Asrarul320/Data-Analytics-Projects/tree/main/01_Excel_Project/06_Insurance_Employees_Analysis" target="_blank" rel="noopener">View Project →</a>
               <a href="https://github.com/Asrarul320/Data-Analytics-Projects" target="_blank" rel="noopener">GitHub</a>
@@ -407,6 +409,7 @@
             <ul class="contact-list">
               <li>📧 <a href="mailto:asrarul320@gmail.com">asrarul320@gmail.com</a></li>
               <li>📱 <a href="https://wa.me/919580179879" target="_blank" rel="noopener">+91 95801 79879 (WhatsApp)</a></li>
+              <li>📞 <a href="tel:+919580179879">Call: +91 95801 79879</a></li>
               <li>💼 <a href="https://linkedin.com/in/asrarulhaque" target="_blank" rel="noopener">linkedin.com/in/asrarulhaque</a></li>
               <li>🐙 <a href="https://github.com/Asrarul320" target="_blank" rel="noopener">github.com/Asrarul320</a></li>
               <li>📍 Zakir Nagar, Okhla, New Delhi</li>
@@ -416,18 +419,18 @@
           <form id="contactForm" class="contact-form reveal" novalidate>
             <div class="field">
               <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" placeholder="Enter your name" required />
+              <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name" required />
             </div>
             <div class="field">
               <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" placeholder="Enter your email" required />
+              <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" inputmode="email" required />
             </div>
             <div class="field">
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
             </div>
             <button type="submit" class="btn full">Send Message</button>
-            <p id="formStatus" class="form-status" role="status"></p>
+            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -440,14 +443,8 @@
     <p class="footer-sub">Built with HTML, CSS & JavaScript</p>
   </footer>
 
-  <!-- Image lightbox (dashboard screenshot bada dikhane ke liye) -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <button id="lightboxClose" class="lightbox-close" aria-label="Close image">✕</button>
-    <img id="lightboxImg" src="" alt="" />
-  </div>
-
   <!-- Back to top -->
-  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+  <button id="toTop" class="to-top" aria-label="Back to top" type="button">↑</button>
 
   <script src="script.js"></script>
 </body>
