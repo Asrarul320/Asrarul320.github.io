@@ -77,10 +77,6 @@
       if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) setMenu(false);
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setMenu(false);
-    });
-
     window.addEventListener("resize", () => {
       if (window.innerWidth > 900) setMenu(false);
     });
@@ -185,8 +181,14 @@
       (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            obs.unobserve(entry.target);
+            const el = entry.target;
+            el.classList.add("show");
+            obs.unobserve(el);
+            // animation khatam hone ke baad delay hata do,
+            // warna cards ka hover effect der se chalta hai
+            setTimeout(() => {
+              el.style.transitionDelay = "";
+            }, 1000);
           }
         });
       },
@@ -286,6 +288,61 @@
         if (match) card.classList.add("show"); // make sure it is visible
       });
     });
+  });
+
+  /* =========================================================
+     LIGHTBOX (dashboard screenshot bada dekhne ke liye)
+     ========================================================= */
+  const lightbox = $("#lightbox");
+  const lightboxImg = $("#lightboxImg");
+  const lightboxClose = $("#lightboxClose");
+  let lastFocused = null;
+
+  function openLightbox(src, alt) {
+    if (!lightbox || !lightboxImg) return;
+    lastFocused = document.activeElement;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden"; // peeche ka page scroll na ho
+    if (lightboxClose) lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    if (!lightbox || !lightbox.classList.contains("open")) return;
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  if (lightbox && lightboxImg) {
+    // [data-lightbox] wale links par click
+    $$("[data-lightbox]").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault(); // naya tab na khule
+        const img = $("img", link);
+        openLightbox(link.getAttribute("href"), img ? img.alt : "");
+      });
+    });
+
+    // Bahar ya image par click karne se band
+    lightbox.addEventListener("click", closeLightbox);
+    if (lightboxClose) {
+      lightboxClose.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeLightbox();
+      });
+    }
+  }
+
+  // Esc dabane par lightbox aur mobile menu dono band
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeLightbox();
+      setMenu(false);
+    }
   });
 
   /* =========================================================
